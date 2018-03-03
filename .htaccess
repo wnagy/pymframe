@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteRule "^start$"  "index.html"
+#RewriteRule "^mitarbeiter$"  "scripts/start.py?path=/registerma"
+#RewriteRule "^gruppe$"       "scripts/start.py?path=/registergr"

@@ -1,0 +1,30 @@
+User-agent: *
+
+Disallow: /
+Disallow: /css/
+Disallow: /images/
+Disallow: /info/
+Disallow: /scripts/
+Disallow: /WEB-INF/
+
+User-agent: googlebot
+User-agent: googlebot-image
+User-agent: yahoo-slurp
+User-agent: yahoo-mmcrawler
+User-agent: bingbot
+User-agent: psbot
+User-agent: teoma
+User-agent: yandex
+User-agent: exabot
+User-agent: gigabot
+User-agent: ia_archiver
+User-agent: baiduspider
+User-agent: nutch
+User-agent: cityreview
+User-agent: WebReaper
+User-agent: WebCopier
+User-agent: Offline Explorer
+User-agent: HTTrack
+User-agent: Microsoft.URL.Control
+User-agent: EmailCollector
+User-agent: penthesilea

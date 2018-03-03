@@ -1,0 +1,471 @@
+/**
+ * Standard CSS fuer Framework
+ *
+ * HINT:
+ *    Hier keine Aenderungen durchfuehren
+ *    Verwende dazu add.css
+ *
+ * Author: W. Nagy
+ *
+ * Colors 6194BC	A5D1F3	D0EAFF	E4001B	ECECEC	606060
+ */
+
+/**
+ * globals
+ */
+html {
+   margin:0px;
+	padding:0px;
+   height: 100%;
+	width:100%;
+   }
+
+body {
+   margin:0px;
+	padding:0px;
+   height: 100%;
+	width:100%;
+   font-family:Tahoma,Arial,sans-serif;
+   font-size:1em;
+   background:#FFFFFF;
+   }
+
+header {
+   position:fixed;
+   width:100%;
+   top:0;
+   margin:0;
+   padding:0;
+   background-color:#FFFFFF;
+   color:black;
+	border-bottom:2px solid #606060;
+   }
+
+div#backlink {
+   width:100%;
+   font-size:0.9em;  
+   background-color:transparent;
+   color:#003366;
+   padding-left:4px;
+   padding-bottom:4px;
+   }
+
+div#backlink a{
+   text-decoration:none;
+   color:#2EA3F2;
+   }
+
+
+article {
+  height:100%;
+  width:100%;
+  padding-top:128px;
+  background:transparent;
+  }
+
+footer {
+   position:fixed;
+   bottom:0;
+   padding-bottom:2px;
+   width:100%;
+   background-color:#003366;
+   color:white;
+   z-index:3;
+   }
+
+
+div#logoff{
+   display:inline;
+   position:absolute;
+   right:20px;
+   top:8px;
+   font-size:small;
+   font-weight:bold;
+   background:white;
+   padding-left:8px;
+   padding-right:8px;
+   border:1px solid black;
+   background-color:lightgrey;
+   }
+
+img.logo {
+   border:1px solid transparent;
+   margin-right:8px;
+   margin-left:8px;
+	margin-top:calc( ( 72px - 64px ) / 2);
+   float:left;
+   }
+
+a#abmelden{
+   color:black;
+   text-decoration:none;
+   }
+
+/**
+ * Position copyright Hinweis
+ */
+
+div#cpr {
+   display:inline;
+   font-size:x-small;
+   }
+
+div#app-info{
+   background-color:transparent;
+   font-size:x-small;
+   padding-left:8px;
+   padding-right:32px;
+   color:#2EA3F2;
+   }
+
+.application-name {
+   letter-spacing: 0.25em;
+   font-size:x-large;
+   color:#024876;
+   }
+
+/**
+ * Pagelayout 
+ */
+ 
+ div#flash {
+   position:fixed;
+   top:0;
+   left:0;
+   color:black;
+   font-weight:bold;
+   background:darkred;
+   color:white;
+   z-index:999;
+   padding:4px;
+   width:100%;
+   }
+
+
+nav {
+   position:relative;
+	left:-70px;
+	display:block;
+   width:100%;
+   }
+
+nav menu{
+   overflow-x:auto;
+   overflow-y:hidden;
+   white-space:nowrap
+   }
+
+nav menu li {
+   display:inline-block;
+   }
+
+nav menu li.menu-hdr {
+   display:inline-block;
+   color:#024876;
+   font-size:1.1vw;
+   }
+
+
+nav menu a {
+   text-decoration:none;
+   color: #2EA3F2;
+   display:inline-block;
+   margin-right:16px;
+   font-size:16pt;
+   }
+
+nav menu a:hover {
+   border-bottom:2px solid #2EA3F2;
+   }
+
+hr.menu {
+   border:0;
+   border-bottom:1px dashed darkblue;
+   height:1px;
+   }
+
+
+div#content {
+  background-color:transparent;
+  padding-left:8px;
+  padding-right:8px;
+  padding-bottom:64px;
+  height: 100%;
+  }
+
+div#login-content {
+  margin-top:64px;
+  background-color:transparent;
+  padding-left:8px;
+  padding-right:8px;
+  width:32em;
+  margin-left:auto;
+  margin-right:auto;
+  }
+
+input.login {
+   border-top:0px;
+   border-left:0px;
+   border-right:0px;
+   border-bottom:1px dashed black;
+   background-color:transparent;
+   width:28em;
+   margin-left:2em;
+   }
+
+div#footer {
+  clear:both;
+  background-color: silver;
+  position:relative;
+  margin-bottom:0px;
+  width:100%;
+  }
+
+/*
+ ********* END PAGE LAYOUT ***********
+ */
+
+fieldset {
+   font-size:smaller;
+   color:darkblue;
+   }
+
+h1 {
+   font-size:1.2em;
+   margin-top:0px;
+	color:#CC3300;
+   }
+
+h2 {
+   font-size:1.1em;
+   color:#477FA6;
+   }
+
+h3 {
+   font-size:1em;
+   color:#477FA6;
+   }
+
+div.kriterien {
+   margin-top:8px;
+   padding-left:8px;
+   padding-right:8px;
+   background-color:#F7F7F7;
+   margin-bottom:8px;
+   }
+/**
+ * tables
+ */
+table {
+   border-collapse:separate;
+   border-spacing:1px;
+   width:100%
+   }
+
+td {
+   padding:0px;
+   margin:0px;
+   white-space:nowrap;
+   }
+
+td.numeric {
+   padding:0px;
+   margin:0px;
+   white-space:nowrap;
+   text-align:right;
+   }
+
+
+th {
+   background-color:#477FA6;
+   color:white;
+   font-size:1em;
+   }
+
+tr.line-1 {
+   background-color:white;
+   }
+
+tr.line-2 {
+   background-color:#EFEFEF;
+   }
+
+
+/**
+ * Pagination 
+ */
+div.pagination {
+   border:1px solid black;
+   padding-left:8px;
+   padding-top:4px;
+   padding-bottom:4px;
+   }
+
+a.pagination {
+   text-decoration:none;
+   color:black;
+   font-size:larger;
+   border:1px solid black;
+   padding-left:4px;
+   padding-right:4px;
+   margin-right:4px;
+   }
+
+a.pagination-current-page {
+   text-decoration:none;
+   color:black;
+   font-size:larger;
+   border:1px solid black;
+   padding-left:4px;
+   padding-right:4px;
+   margin-right:4px;
+   font-weight:bold;
+   }
+
+a.pagination:hover {
+   font-weight:normal;
+   background-color:lightgrey;
+   }
+
+
+ul.tabbing {
+   display:inline;
+   padding:0px;
+   margin:0px;
+   }
+
+li.tabbing {
+   display:inline;
+   padding-left:4px;
+   padding-right:4px;
+   border-top:1px solid black;
+   border-right:1px solid black;
+   border-left:1px solid black;
+   border-bottom:1px solid black;
+   margin-left:4px;
+   background-color:#F0F0F0;
+   border-top-right-radius: 4px;
+   border-top-left-radius: 4px;
+   }
+
+li.tabbing-active {
+   display:inline;
+   padding-left:4px;
+   padding-right:4px;
+   border-top:1px solid black;
+   border-right:1px solid black;
+   border-left:1px solid black;
+   border-bottom:1px solid white;
+   margin-left:4px;
+   background-color:transparent;
+   border-top-right-radius: 4px;
+   border-top-left-radius: 4px;
+   }
+
+a.tabbing {
+   text-decoration:none;
+   color:black;
+   }
+
+
+div.tabbing {
+   border-bottom:1px solid black;
+   }
+
+h1.blockname {
+   font-size:1.2em;
+   color:#CC3300;
+   }
+
+textarea.msk-textarea{
+   font-family:Fixed,monospace;
+   }
+
+
+#infobox {
+   margin-left:auto;
+   margin-right:auto;
+   width:80%;
+   padding-left:16px;
+   padding-right:16px;
+   padding-top:8px;
+   padding-bottom:8px;
+   border:2px dotted #477FA6;
+   }
+
+td.mask {
+   text-align:right;
+   color:#477FA6;
+   font-weight:bold;
+   font-size:smaller;
+   padding-right:8px;
+   }
+
+td.list {
+   font-size:smaller;
+   font-family:Tahoma,Arial,sans-serif;
+   color:darkblue;
+   padding-left:4px;
+   padding-right:4px;
+   }
+
+.numeric {
+   font-family:consolas,fixed;
+   text-align:right;
+   }
+
+input.grid-layout-button {
+   border-top:1px solid black;
+   border-left:1px solid black;
+   border-right:2px solid black;
+   border-bottom:2px solid black;
+   padding-left:16px;
+   padding-right:16px;
+   padding-top:2px;
+   padding-bottom:2px;
+   background-color:lightgrey;
+   }
+
+label.mask{
+   color:#477FA6;
+   font-weight:bold;
+   }
+
+label.mask-active{
+   color:darkred;
+   font-weight:bold;
+   }
+
+label.grid-col{
+   color:white;
+   font-weight:bold;
+   }
+
+label.grid-col-active{
+   color:yellow;
+   font-weight:bold;
+   }
+
+abbr {
+   border-bottom:1px dashed black;
+   }
+
+img.mask {
+   border:0;
+   }
+
+fieldset.loginmask {
+   width:255px;
+   margin-left:auto;
+   margin-right:auto;
+   padding-left:16px;
+   padding-right:16px;
+   padding-bottom:16px;
+   border:1px solid #477FA6;
+   }
+
+input[mode="dashed"] {
+   border:0;
+   border-bottom:1px dashed black;
+   background-color:transparent;
+   }

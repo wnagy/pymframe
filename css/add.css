@@ -1,0 +1,70 @@
+form#login{
+   position:absolute;
+   right:16px;
+   top:64px;
+   color:white;
+   }
+
+input.login {
+   border-top:0px;
+   border-left:0px;
+   border-right:0px;
+   border-bottom:1px dashed white;
+   background-color:transparent;
+   width:16em;
+   color:white;
+   font-size:1em;
+   }
+
+input[type="submit"].login {
+   border:1px solid black;
+   background-color:lightgrey;
+   font-size:smaller;
+   color:black;
+   width:6em;
+   }
+
+input[type="submit"] {
+   border:1px solid black;
+   padding:2px;
+   color:black;
+   width:8em;
+   background-color:lightgrey;
+   }
+
+a.mask {
+   border:1px solid black;
+   padding:2px;
+   color:black;
+   background-color:lightgrey;
+   text-decoration:none;
+   font-size:smaller;
+   }
+
+span.strong {
+   color:orange;
+   font-weight:bold;
+   }
+
+tr.line-1:hover {
+   background-color:#DBF0FF;
+   }
+
+tr.line-2:hover {
+   background-color:#DBF0FF;
+   }
+
+
+.dottedline {
+   border:0;
+   border-bottom:1px dashed black;
+   }
+
+
+#system-button {
+   float:right;
+   position:relative;
+   top: 2px;
+   cursor:pointer;
+   padding-left:16px;
+   }

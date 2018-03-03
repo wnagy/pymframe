@@ -1,0 +1,2020 @@
+
+<html>
+ <head>
+  <style type="text/css">
+     * {
+        font-family:"Lucida Console",fixed;
+        }
+     h1 {
+        color:navy;
+        padding:0;
+        margin:0;
+        }
+     h1.modul {
+        color:black;
+        padding:0;
+        margin:0;
+        margin-top:8px;
+        text-decoration:underline;
+        font-size:1.5em;
+        }
+     h1.__init__ {
+        color:darkgreen;
+        padding:0;
+        margin:0;
+        font-size:1.2em;
+        }
+     h2 {
+        color:green;
+        }
+     p {
+        font-family:"Lucida Console",fixed;
+        white-space:pre; 
+        width:80ex
+        color:darkgreen;
+        }
+
+     tt {
+        font-family:Courier;
+        }
+
+     div.filename {
+        border:1px solid black;
+        font-size:larger;
+        text-decoration:underline;
+        padding-top:8px;
+        padding-bottom:8px;
+        }
+     span.param {
+        text-decoration:underline;
+        }
+     span.hint {
+        font-weight:bold;
+        }
+
+  </style>
+ </head>
+<body>
+
+<div class="filename">File: <span style="font-size:x-small">/authenbase.py</span></div>
+<h1>Klasse AuthenBase</h1>
+<p>
+   
+   Basisklasse fuer Authentifizierung
+
+    Die Autentifizierung basiert auf einer
+    Sessionvariable namens user. Ist diese
+    gesetzt gilt der Benutzer als angemeldet
+   
+</p>
+
+<h2>Konstruktor</h2>
+<tt>   def __init__(self,session=None):
+</tt>
+<p>
+      
+      Konstruktor
+      <span class="param">param</span>&nbsp;   session        Sessionobjekt
+      
+</p>
+
+<h2>getUser</h2>
+<tt>   def getUser(self):
+</tt>
+<p>      Liefert den aktuellen User
+</p>
+
+<h2>init</h2>
+<tt>   def init(self):
+</tt>
+<p>       Initialisierung
+</p>
+
+<h2>isAuthenticated</h2>
+<tt>   def isAuthenticated(self):
+</tt>
+<p>      Liefert wahr, wenn benutzer vorhanden ist
+</p>
+
+<h2>getRights</h2>
+<tt>   def getRights(self):
+</tt>
+<p>
+      ABSTRAKT: 
+      liefert eine Liste von Rechten, wenn Benutzer eingelogt
+      
+</p>
+
+<h2>hasRight</h2>
+<tt>   def hasRight(self,right=None):
+</tt>
+<p>
+      
+      Liefert True, wenn uebergebenens Recht in der Rechteliste vorhanden ist
+      <span class="param">param</span>&nbsp;   right    Recht
+      
+      <span class="param">return</span>&nbsp;  [True|False] 
+      
+</p>
+
+<h2>getUserinfo</h2>
+<tt>   def getUserinfo(self,user=''):
+</tt>
+<p>
+      
+      Liefert die Userinformatioenn oder eine leeres Dictionary,wenn nicht gefunden.
+      <span class="param">param</span>&nbsp;   user  Benutzername
+      
+</p>
+
+<h2>getPassword</h2>
+<tt>   def getPassword(self):
+</tt>
+<p>      Liefert Passwort des aktuellen Benutzers oder None wenn nicht gefunden
+</p>
+
+<h2>authen</h2>
+<tt>   def authen(self):
+</tt>
+<p>      Setzt die Rechte des Users, wenn eingeloggt
+</p>
+
+<div class="filename">File: <span style="font-size:x-small">/checktype.py</span></div>
+<h1 class="modul">Hintergrund</h1>
+<p>
+
+Stellt einen Typensicherheitsmechanismus zur Verfuegung.
+
+Diese Klasse wird ovn dbaccess.core verwendent
+
+
+</p>
+
+<h1>Klasse Checktype</h1>
+<p>
+   
+   Es werden folgende Typen ueberprueft:
+
+      + String
+      + Integer
+      + Float, Double
+      + Date (Basiierend auf dem Dateconvertert Objekt)
+      + email
+   
+</p>
+
+<h2>isString</h2>
+<tt>   def isString(self,value):
+</tt>
+<p>
+      
+      Pruefen ob der uebergene Wert ein String ist.
+
+      <span class="param">param</span>&nbsp;   value
+
+      <span class="param">return</span>&nbsp; [True|False] 
+      
+</p>
+
+<h2>isInteger</h2>
+<tt>   def isInteger(self,value):
+</tt>
+<p>
+      
+      Pruefen ob der uebergene Wert ein Integer ist.
+
+      <span class="param">param</span>&nbsp;   value
+
+      <span class="param">return</span>&nbsp; [True|False] 
+      
+</p>
+
+<h2>isFloat</h2>
+<tt>   def isFloat(self,value):
+</tt>
+<p>
+      
+      Pruefen ob der uebergene Wert ein Float ist.
+
+      <span class="param">param</span>&nbsp;   value
+
+      <span class="param">return</span>&nbsp; [True|False] 
+      
+</p>
+
+<h2>isDate</h2>
+<tt>   def isDate(self,value):
+</tt>
+<p>
+      
+      Pruefen auf gueltiges Datum vorhanden ist dies geschieht durch die Klasse Dateconverter
+
+      <span class="param">param</span>&nbsp;   value
+
+      <span class="param">return</span>&nbsp; [True|False] 
+      
+</p>
+
+<h2>isEmail</h2>
+<tt>   def isEmail(self,a):
+</tt>
+<p>
+      
+      MINI emailadressencheck
+      basierend auf http://www.daniweb.com/code/snippet280071.html
+
+      <span class="param">param</span>&nbsp;   value
+
+      <span class="param">return</span>&nbsp; [True|False] 
+      
+</p>
+
+<div class="filename">File: <span style="font-size:x-small">/configbase.py</span></div>
+<h1>Klasse ConfigBase</h1>
+<p>
+   
+   Standert Vorgabe wert fuer das Framework.
+
+   HINT:
+   Diese Klasse wird von Config der Anwendung geerbt und dort angepasst.
+
+   $APPROOT/WEB-INF/conf/config.py
+
+   
+</p>
+
+<div class="filename">File: <span style="font-size:x-small">/controller.py</span></div>
+<h1>Klasse Controller</h1>
+<p>
+   
+   Basisklasse fuer eine Controller
+   Die Klasse wird vom Framework automatisch
+   generiert und initialisiert.
+
+   
+</p>
+
+<h2>render</h2>
+<tt>   def render(self,text=''):
+</tt>
+<p>
+      
+      Einfuegen String in Buffer.
+
+      Beispiel: self.render("Hallo Welt")
+
+      <span class="param">param</span>&nbsp;   text        Auszugebender Text
+
+      
+</p>
+
+<h2>view</h2>
+<tt>   def view(self,filename,param=None,importcgi=False):
+</tt>
+<p>
+      
+      Aufrufen Viewer
+      
+      <span class="param">param</span>&nbsp;   filename          Filenamen des Viewer
+      <span class="param">param</span>&nbsp;   param             Binding Variable fuer den 
+                                 Viewer, welch dort verwenden werden koennen.
+      <span class="param">param</span>&nbsp;   importcgi         Felder eine Form werden automatisch
+                                 aus dem CGI befuellt
+      
+</p>
+
+<div class="filename">File: <span style="font-size:x-small">/dateconverter.py</span></div>
+<h1>Klasse Dateconverter</h1>
+<p>
+   
+   Die Klasse Dateconverter konvertier Datumseintraege von und nach ASCII
+
+   
+</p>
+
+<h2>validDate</h2>
+<tt>   def validDate(self,value,format):
+</tt>
+<p>
+      
+      Prueft ob ein uebergebenes Datum dem Fformat entspricht
+      <span class="param">param</span>&nbsp;   value    Datumswert
+      <span class="param">param</span>&nbsp;   formt    Formatstring
+
+      <span class="param">return</span>&nbsp;  [True|False]
+      
+</p>
+
+<h2>_getANSI</h2>
+<tt>   def _getANSI(self,secs=False):
+</tt>
+<p>
+      
+      Liefert eine Ausgabe eines Timestamps im ISO Format
+
+      <span class="param">param</span>&nbsp;   secs   [True|False] Bei True werden die Sekunden mit ausgegeben
+      
+</p>
+
+<h2>fromString</h2>
+<tt>   def fromString(self,value):
+</tt>
+<p>
+      
+      Aus einem String wird ein ANSI Datum generiert
+      Tritt ein Fehler auf, wird ein TypeError geworfen.
+
+      Die Ausgabe erfolgt im ANSI/ISO Format.
+      Werden beim Imputstring Sekunden angegeben, wird dies
+      bei der Ausgabe beachtet sonst werden nur bis zur Minute ausgegeben.
+
+      <span class="param">param</span>&nbsp;   value       Datumswert
+
+      <span class="param">return</span>&nbsp;  Datums als ISO/ANSI Foramt
+      
+</p>
+
+<h2>clear</h2>
+<tt>   def clear(self):
+</tt>
+<p>      Loescht timestamp 
+</p>
+
+<h2>initTimestamp</h2>
+<tt>   def initTimestamp(self,value=None):
+</tt>
+<p>
+      Initialisiert Timestamp
+
+         <span class="param">param</span>&nbsp;  value       Datum als Zeichenkette
+                             wirft Exception wenn
+                             value und timestamp None
+
+         HINT:
+            Wird als Uebergabewert 'now' oder 'jetzt' eingegeben
+            wird das aktelle Datum angenommen.
+         
+</p>
+
+<h2>giveAsANSIDate</h2>
+<tt>   def giveAsANSIDate(self,value=None,secs=False,nvl=None):
+</tt>
+<p>
+      Liefert das aktuelle Datum als ANSI Datum
+         optional koennen die Sekunden mit ausgegeben werden
+         
+</p>
+
+<h2>giveAsANSIDateTime</h2>
+<tt>   def giveAsANSIDateTime(self,value=None,secs=False,nvl=None):
+</tt>
+<p>
+      Liefert das aktuelle Datum als ANSI Datum und Zeit
+         optional koennen die Sekunden mit ausgegeben werden
+         
+</p>
+
+<h2>giveAsGermanDate</h2>
+<tt>   def giveAsGermanDate(self,value=None,format=None,nvl=None):
+</tt>
+<p>
+      Liefert das aktuelle Datum als ANSI Datum und Zeit
+         optional koennen die Sekunden mit ausgegeben werden
+         <span class="param">param</span>&nbsp; value      Wert
+         <span class="param">param</span>&nbsp; format     Datumformat Vorgabewert %d.%m.%Y
+         <span class="param">param</span>&nbsp; nvl        Defaultwert: ist value None wird dieser Wert eingesetzt
+                           der Wert now gibt das aktuelle Datum
+         
+</p>
+
+<h2>giveAsGermanDateTime</h2>
+<tt>   def giveAsGermanDateTime(self,value=None,secs=False,nvl=None):
+</tt>
+<p>
+      Liefert das aktuelle Datum als ANSI Datum und Zeit
+         optional koennen die Sekunden mit ausgegeben werden
+         
+</p>
+
+<div class="filename">File: <span style="font-size:x-small">/main.py</span></div>
+<h1 class="modul">Hintergrund</h1>
+<p>
+
+Diese Klasse ist die Hauptsteuerroutine des Frameworks.
+
+Sie steuert das gesamte Verhalten.
+Es werden die Subklassen instanziert
+
+
+</p>
+
+<h1>Klasse Mframe</h1>
+<h2>cgiparam</h2>
+<tt>   def cgiparam(self,name=None,nvl='',noneifnotused=False):
+</tt>
+<p>
+      
+      Liefert aus dem CGI einen benannten Parameter
+
+      <span class="param">param</span>&nbsp;   name     Name des Cgiparmeters
+      <span class="param">param</span>&nbsp;   nvl      NullValue wird geliefert, 
+                        wenn der Parameter nicht uebergeben wurde
+               
+</p>
+
+<h2>Konstruktor</h2>
+<tt>   def __init__(self,webini='../../WEB-INF',sessionlifetime=180):
+</tt>
+<h2>setContainer</h2>
+<tt>   def setContainer(self,name=None):
+</tt>
+<p>
+      
+      Setzt den zu verwendenden Container.
+      Ein Container befindet sich normalerweise als Datei
+      in ./WEB-INF/temlate und stellt den aeusseren Rahmen 
+      in HTML dar. Er enhaelt Platzhalter in denen die Werte
+      aus dem Framework eingetragen werden.
+      
+      <span class="param">param</span>&nbsp;   name        Name des Containerfiles
+
+      
+</p>
+
+<h2>setAttribute</h2>
+<tt>   def setAttribute(self,name=None,value=None):
+</tt>
+<p>
+      
+      Setzt ein Attribut in der Session.
+
+      <span class="param">param</span>&nbsp;   name        Name des Attributes
+      <span class="param">param</span>&nbsp;   value       Wert des Attributes
+
+      
+</p>
+
+<h2>getAttribute</h2>
+<tt>   def getAttribute(self,name=None):
+</tt>
+<p>
+      
+      Liefert den Wert eines Attributes oder None
+      wenn dieses nicht gefunden wurde aus der Session.
+
+      <span class="param">param</span>&nbsp;      name        Attrbutname
+
+      <span class="param">return</span>&nbsp;     Attributwert
+      
+</p>
+
+<h2>start_html</h2>
+<tt>   def start_html(self):
+</tt>
+<h2>end_html</h2>
+<tt>   def end_html(self):
+</tt>
+<h2>setEntryDisplay</h2>
+<tt>   def setEntryDisplay(self,path=None,mode=True):
+</tt>
+<p>
+      
+      Setzte den Displaystatus
+
+      <span class="param">param</span>&nbsp;   path        Patheintrag
+      <span class="param">param</span>&nbsp;   mode        True/False (Vorgabewert True
+      
+</p>
+
+<h2>setEntryParam</h2>
+<tt>   def setEntryParam(self,path=None,param=[]):
+</tt>
+<p>
+      
+      Setzte zusaetzliche Parameter in Entry
+
+      <span class="param">param</span>&nbsp;   path        Patheintrag
+      <span class="param">param</span>&nbsp;   param       Zusaetzliche Parameter als Liste
+      
+</p>
+
+<h2>addEntry</h2>
+<tt>   def addEntry(self,
+</tt>
+<p>
+      
+      Fuegt in die Menueeintraege einen Eintrag dynamisch hinzu
+
+      <span class="param">param</span>&nbsp;   path        Der Path unter dem der Eintrag eingetragen
+                           werden soll
+      <span class="param">param</span>&nbsp;   controller  Controller Name
+                           Beginnt der Controller name mit "@url:"
+                           wird ein Link mit dem Inhalt nach @url: erzeugt
+      <span class="param">param</span>&nbsp;   text        Anzeigetext (darf nicht leer sein da sonst keine
+                           Anzeige erfogt.
+
+      <span class="param">param</span>&nbsp;   addparam    eine Liste mit Parameter, welche dem
+                           Link hinzugefuegt werden. z.B. ['action=list-edit']
+      
+</p>
+
+<h2>configMenu</h2>
+<tt>   def configMenu(self,container=None,entry=None):
+</tt>
+<p>
+      
+      Liefert ein gerendetes Menue
+
+      Konfigurieren des Menues:
+       <span class="param">param</span>&nbsp; container      Ein Container in dem die Menueeintraege
+                             eingefuegt werden
+                             Beispiel: '<ul>{0}</ul>'
+       <span class="param">param</span>&nbsp; entry          Ein Format fuer einen Menueeintrag
+                             'Beispiel: <a href={0}?path={1}>{2}</a><br />'
+                             Parameter:
+                                0   URL
+                                1   aktueller Pfad
+                                2   Anzeigetext
+      
+      
+</p>
+
+<h2>reload</h2>
+<tt>   def reload(self,path):
+</tt>
+<p>
+      "
+      Liefert einen http-equiv Fuer in Browserreload
+
+      <span class="param">param</span>&nbsp;   path        Pfadeintrag
+      <span class="param">return</span>&nbsp;  gerenderte Eintrag
+      
+</p>
+
+<h2>init</h2>
+<tt>   def init(self):
+</tt>
+<p>
+      
+      Initaialsierungsroutine des Frameworks
+
+      HINT:
+         Prueft ob der Benutzer eingelogt ist
+         Ist dies nicht der Fall, wird die Einloggmaske verwendet
+
+      
+</p>
+
+<h2>appException</h2>
+<tt>   def appException(self,controllerfilename,message):
+</tt>
+<p>
+       
+       Ausgabe der Standard Fehlermeldung
+
+       <span class="param">param</span>&nbsp;  controllerfilename      Name des Controllers
+       <span class="param">param</span>&nbsp;  message                 Nachrichtentext
+       
+</p>
+
+<h2>setFlash</h2>
+<tt>   def setFlash(self,msg):
+</tt>
+<p>
+                 % {
+                   'filename':controllerfilename,
+                   'meldung':message
+                   }
+
+   # Setzten des Flashparameters
+   def setFlash(self,msg):
+      
+</p>
+
+<h2>run</h2>
+<tt>   def run(self):
+</tt>
+<p>
+      
+      self.flash = msg
+
+   def run(self):
+      
+</p>
+
+<div class="filename">File: <span style="font-size:x-small">/menubase.py</span></div>
+<h1 class="modul">Hintergrund</h1>
+<p>
+
+ Abstrakte Klasse fuer die Menudarstellung
+ Sie wird normalerweise von der Klasse Menu im WEB-INF/conf/menu
+ importiert.
+
+</p>
+
+<h1>Klasse MenuBase</h1>
+<h2>getEntry</h2>
+<tt>   def getEntry(self,path,dieifnotfound=True):
+</tt>
+<h2>truncatepath</h2>
+<tt>   def truncatepath(self,path):
+</tt>
+<h2>getHtml</h2>
+<tt>   def getHtml(self,entry):
+</tt>
+<h2>hasEntryRight</h2>
+<tt>   def hasEntryRight(self,entry):
+</tt>
+<h2>navigation</h2>
+<tt>   def navigation(self):
+</tt>
+<h2>backlink</h2>
+<tt>   def backlink(self):
+</tt>
+<h2>setDisplay</h2>
+<tt>   def setDisplay(self,path=None,mode=True):
+</tt>
+<p>
+      
+      Setzt den Display Status des Eintrag
+      <span class="param">param</span>&nbsp;   path        Patheintrag
+      
+</p>
+
+<h2>setParam</h2>
+<tt>   def setParam(self,path=None,param=[]):
+</tt>
+<p>
+      
+      Setze dynamisch zusaetzliche Parameter in Menueeintrag
+      <span class="param">param</span>&nbsp;   path        Patheintrag
+      <span class="param">param</span>&nbsp;   param       Paramter als Liste.
+      
+</p>
+
+<h2>getControllerPath</h2>
+<tt>   def getControllerPath(self):
+</tt>
+<p>
+      
+      Liefert eine relativen Pfad auf einen Controller.
+      Wird nur der Namen angeben, so wird dieser aus der Pfad Option
+      und dem Controllernamen des Menueeintrags gebildet.
+
+      Beginnt der Controller Eintrag mit '/' so wird der Pfad relativ zu WEB-INF gebildet.
+      
+</p>
+
+<h2>getControllerName</h2>
+<tt>   def getControllerName(self):
+</tt>
+<p>
+      
+      Behandelt die Verwendung von relativen Pfadangaben im Controller Eintrag
+
+      Liefert den Dateinamen des Controllers ohne ".py"
+
+      HINT:
+         Verwendet zur Bildung des Namens os.path
+
+      
+</p>
+
+<h2>getController</h2>
+<tt>   def getController(self):
+</tt>
+<div class="filename">File: <span style="font-size:x-small">/session.py</span></div>
+<h1>Klasse Session</h1>
+<h2>Konstruktor</h2>
+<tt>   def __init__(self,sessionpath=None,sessionlifetime=None):
+</tt>
+<h2>getSessionFileName</h2>
+<tt>   def getSessionFileName(self):
+</tt>
+<h2>lifetime</h2>
+<tt>   def lifetime(self):
+</tt>
+<h2>loadAttributes</h2>
+<tt>   def loadAttributes(self):
+</tt>
+<h2>generateSessionId</h2>
+<tt>   def generateSessionId(self):
+</tt>
+<h2>newSession</h2>
+<tt>   def newSession(self):
+</tt>
+<h2>remove</h2>
+<tt>   def remove(self):
+</tt>
+<h2>purge</h2>
+<tt>   def purge(self):
+</tt>
+<h2>setCookie</h2>
+<tt>   def setCookie(self):
+</tt>
+<h2>loadCookie</h2>
+<tt>   def loadCookie(self):
+</tt>
+<h2>getSID</h2>
+<tt>   def getSID(self):
+</tt>
+<h2>setAttribute</h2>
+<tt>   def setAttribute(self,name=None,value=None):
+</tt>
+<h2>removeAttribute</h2>
+<tt>   def removeAttribute(self,name=None):
+</tt>
+<h2>getAttribute</h2>
+<tt>   def getAttribute(self,name=None):
+</tt>
+<div class="filename">File: <span style="font-size:x-small">/sideboxbase.py</span></div>
+<h1>Klasse SideboxBase</h1>
+<h2>getSideboxText</h2>
+<tt>   def getSideboxText(self,filepath):
+</tt>
+<h2>get</h2>
+<tt>   def get(self):
+</tt>
+<div class="filename">File: <span style="font-size:x-small">/taglibbase.py</span></div>
+<h1 class="modul">Hintergrund</h1>
+<p>Basisklasse fuer Elementen zur Bildschirmdarstellung im Browser
+</p>
+
+<h1>Klasse TaglibBase</h1>
+<h2>Konstruktor</h2>
+<tt>   def __init__(self):
+</tt>
+<h2>getClass</h2>
+<tt>   def getClass(self,theClass):
+</tt>
+<p>      Liefert ein HTML class Attribute wenn nicht None
+</p>
+
+<h2>getStyle</h2>
+<tt>   def getStyle(self,theStyle):
+</tt>
+<p>      Liefert ein HTML style Attribute wenn nicht None
+</p>
+
+<h2>isnull</h2>
+<tt>   def isnull(value,nvl):
+</tt>
+<p>      Wandelt den None in uebergebenen Wert aus nvl um
+</p>
+
+<h2>_getYear</h2>
+<tt>   def _getYear(self,year):
+</tt>
+<p>
+       Liefert einen Jahreseintrag
+          <span class="param">param</span>&nbsp; item      Jahr
+                           als Integer: wird zurueckgeliefert
+                           als Kennung:
+                              'now'        aktuelles Jahr
+                              'next'       aktuelles Jahr + 1
+                              'last'       aktuelles Jahr - 1
+          
+</p>
+
+<h2>promptinput</h2>
+<tt>   def promptinput(
+</tt>
+<p>      Liefert ein Input Widget
+</p>
+
+<h2>form</h2>
+<tt>   def form(self,name=None,style='display:inline;',css_class=None,method=None):
+</tt>
+<p>
+      
+      Liefert einen Form-Tag
+      <span class="param">param</span>&nbsp;   name        Name der Form. Default: 'edit'
+      <span class="param">param</span>&nbsp;   style       Styleattribut. Default: 'display:inline'
+      <span class="param">param</span>&nbsp;   css_class   Classattribute. Default: Kein class
+      <span class="param">param</span>&nbsp;   method      HTTP Form method (Vorgabewert 'post')
+      
+</p>
+
+<h2>endform</h2>
+<tt>   def endform(self):
+</tt>
+<p>      Liefert einen End-Form Tag
+</p>
+
+<h2>table</h2>
+<tt>   def table(self,name=None,style=None,colgroup=None):
+</tt>
+<p>
+      Liefert eine Table-Tag
+         <span class="param">param</span>&nbsp; name          Name der Table
+         <span class="param">param</span>&nbsp; style         Style Atritbute. Default nichts
+         <span class="param">param</span>&nbsp; colgroup      Liefert nach dem Table-Tag ein Colgroup Tag
+                              mit der Anzahl der Cols mit Breite 1%, Abschliessend
+                              wird ein weitere Col Attribute mit dem Wert 99% eingefuegt
+         
+</p>
+
+<h2>tablehead</h2>
+<tt>   def tablehead(self,heads,css_class=None,style=None):
+</tt>
+<p>
+       Liefert eine Tabellenzeile
+          <span class="param">param</span>&nbsp; heads        ist eine Liste von Tabellenkoepfe
+          <span class="param">param</span>&nbsp; css_class    CSS Klasse fuer TH Element
+          <span class="param">param</span>&nbsp; style       Style Attribut fuer TH Element
+          
+</p>
+
+<h2>tablerow</h2>
+<tt>   def tablerow(self,values,usezebra=True):
+</tt>
+<p>      Liefert eine Tabellenzeile
+</p>
+
+<h2>endtable</h2>
+<tt>   def endtable(self):
+</tt>
+<p>      Liefert ein End-Table HTML Tag
+</p>
+
+<h2>hidden</h2>
+<tt>   def hidden(self,name=None, value=None):
+</tt>
+<p>      Liefert eine Hidden Inputtag
+</p>
+
+<h2>gridButtons</h2>
+<tt>   def gridButtons(self,id=None,addhidden=[],deletebutton=True,editbutton=True):
+</tt>
+<p>
+       Liefert einen Satz von Schaltflaechen in einer Form
+          <span class="param">param</span>&nbsp;  id             Datensatzkennung
+          <span class="param">param</span>&nbsp;  idname         Name der Datensatzkennung
+                                 ist None dann wird 'id' angenommen.
+          <span class="param">param</span>&nbsp;  addhidden      Zusaetzliche hidden Felder in der Form als Liste von Strings
+          <span class="param">param</span>&nbsp;  deletebutton   True: Schaltflaeche zum Loeschen anzeigen
+                                 action=edit
+          <span class="param">param</span>&nbsp;  editbutton     True: Schaltflaeche zum Bearbeiten anzeigen
+                                 action=delete
+
+          
+</p>
+
+<h2>editButton</h2>
+<tt>   def editButton(self,id=None,addhidden=[],idname=None):
+</tt>
+<p>
+       Liefert eine Edit Schaltflaeche in einer Form
+          <span class="param">param</span>&nbsp;  id             Datensatzkennung
+          <span class="param">param</span>&nbsp;  idname         Name des ID Feldes (Default 'id')
+          <span class="param">param</span>&nbsp;  addhidden      Zusaetzliche hidden Felder in der Form als Liste von Strings
+          
+</p>
+
+<div class="filename">File: <span style="font-size:x-small">/template.py</span></div>
+<h1>Klasse PSP</h1>
+<h2>getField</h2>
+<tt>    def getField(self,name=None, nvl=''):
+</tt>
+<p>
+       Liefert eine Inhalt aus dem Dictionary fields
+          Ist dies nicht moeglich, wird der Wert des Parameters nvl zurueckgegeben.
+
+          <span class="param">param</span>&nbsp;  name     Name des Feldes
+          <span class="param">param</span>&nbsp;  nvl      Vorgabewert
+
+          
+</p>
+
+<h2>Konstruktor</h2>
+<tt>    def __init__(self, template=None, filename=None,cgiparam=None,start='<%', end='%>'):
+</tt>
+<h2>render</h2>
+<tt>    def render(self, __namespace=None, **kw):
+</tt>
+<p>
+        
+        renders the template according to the given namespace.
+        __namespace - a dictionary serving as a namespace for evaluation
+        **kw - keyword arguments which are added to the namespace
+        
+</p>
+
+<h2>write</h2>
+<tt>    def write(self, *args):
+</tt>
+<h2>say_hello</h2>
+<tt>        def say_hello(arg):
+</tt>
+<p>
+
+
+    t = Templite(template)
+    print t.render(x=8)
+
+
+    # Output is:
+    
+</p>
+
+<div class="filename">File: <span style="font-size:x-small">/templateengine.py</span></div>
+<h1>Klasse TemplateEngine</h1>
+<h2>Konstruktor</h2>
+<tt>   def __init__(self):
+</tt>
+<h2>readTemplateFile</h2>
+<tt>   def readTemplateFile(self):
+</tt>
+<h2>get</h2>
+<tt>   def get(self,map):
+</tt>
+<div class="filename">File: <span style="font-size:x-small">/utility.py</span></div>
+<h1 class="modul">Hintergrund</h1>
+<p>
+
+Verschiedene Hilfsroutinen 
+
+</p>
+
+<h1>Klasse Utility</h1>
+<h2>objectFactory</h2>
+<tt>   def objectFactory(self):
+</tt>
+<p>
+      
+      Erzeugen eines leeren Objekts
+
+      HINT:
+         in Python Golf
+      
+</p>
+
+<h2>fieldsObjectFactory</h2>
+<tt>   def fieldsObjectFactory(self,domain,nullisempty=True):
+</tt>
+<p>
+      
+      Kopiert alle Datenfelder eine Domain in ein Objekt
+      und gibt dieses zurueck.
+
+      <span class="param">param</span>&nbsp;   domain         Domain
+      <span class="param">param</span>&nbsp;   nullisemtpy    Ist ein Feld None wird "" geliefert
+      <span class="param">return</span>&nbsp;  Ein Objekt mit allen Inhalten der uebergebenen Domain
+      
+</p>
+
+<div class="filename">File: <span style="font-size:x-small">/version.py</span></div>
+<h1>Klasse Version</h1>
+<p>
+   
+   Updates:
+   --------
+   0.10  11.02.2011
+         Checktype als eingen Klasse gemacht
+         Dateconverter entwickelt
+         Untitest ausgebaut
+
+   0.20  ORACLE Unterstuezung eingebaut
+
+   0.21  16.05.2012
+         Verbesserung in der Taglib
+
+   0.3   18.05.2012
+         addEntry um addparam erweitert
+
+   0.4   11.06.2012
+         Bugfix im dbaccess und taglib
+
+   0.5   Viewhandler
+         Bugfix
+
+   0.6   Aenderung im Menu
+         Option display [True | False]
+         Im Controller kann dies Umgesetzt werden.
+         Siehe Details im menu.py
+
+   0.6.1 Grid Layout
+         im Viewhandler
+
+   0.7   Handler im Domain eingebaut
+
+   0.8   Bugfix in dbaccess.core
+         0.8.3 + Viewhandler
+                 Einbau der Mehode nextDomain um mit
+                 Fehler bei der Datenbank umzugehen.
+               + database.core
+                 Bugfix
+         0.8.5 Oracle spezielle Insert
+               Oracle spezielle update
+   0.9   Release Candidat
+         Oracle support verbessert
+         0.9.1       in der eachDomain limit eingebaut
+         0.9.2       bei dbaccess methode get bugfix
+         0.9.3       Paginate in viewhandler
+   
+</p>
+
+<div class="filename">File: <span style="font-size:x-small">/viewhandler.py</span></div>
+<h1 class="modul">Hintergrund</h1>
+<p>
+
+   Routie zum Maskenhandling.
+
+   Es werden zwei Layouts angeboten
+   List/Edit:
+      Es wird eine Liste angeboten, welche eine Editierbutton enthaelt.
+      Wird dieser betaetigt, so wird eine Editiermaske mit dem gewaehlten
+      Datensatz angezeigt.
+      Dieser kann Veraendert oder geloescht werden.
+   
+</p>
+
+<h1>Klasse Viewhandler</h1>
+<h2>Konstruktor</h2>
+<tt>   def __init__(self,
+</tt>
+<h2>getCurrentDomain</h2>
+<tt>   def getCurrentDomain(self,domain=None):
+</tt>
+<p>
+       Gibt die aktuelle domain zurueck.
+
+          <span class="param">param</span>&nbsp;  domain         Domainobjekt
+
+          Ist domain deklariert, wird diese geliefert.
+          Ist domain None, wird versucht die Klassendomain
+          zu liefer. Ist diese auch nicht deklariert wird eine
+          Ausnahme geworfen
+          
+</p>
+
+<h2>loadDomain</h2>
+<tt>   def loadDomain(self,domain=None,key=None):
+</tt>
+<p>
+       Laedt die Domain aus der Datenbank
+
+          <span class="param">param</span>&nbsp;  domain      Domain Objekt
+                              ist dieser None wird das aktuelle Domainobjekt
+                              des Objekts verwendet.
+
+          <span class="param">param</span>&nbsp;  key         Wert ueber welchen aus der
+                              Datenbak gelesen werde soll.
+                              Ist dieser nicht deklariert,
+                              wird der Wert aus dem CGI ermittelt.
+
+          
+</p>
+
+<h2>showEditMask</h2>
+<tt>   def showEditMask(self,loadfrom='cgi',domain=None):
+</tt>
+<p>
+       Anzeigen einer Editiermaske.
+
+          <span class="param">param</span>&nbsp;  loadfrom       gibt an, von wo die
+                                 Felder befuellt werden sollen
+                                 'cgi'    Daten aus dem CGI
+                                 'domain' Daten aus der Domain
+                                 None     Leere Maske wird angezeigt.
+
+          Als Viewerfile wird edit.tpl angenommen (wenn nicht anders in der
+          Klassenvariable deklariert.
+          
+</p>
+
+<h2>showList</h2>
+<tt>   def showList(self,listparam=None,action=None):
+</tt>
+<p>
+      
+      Behandelt bei List/Edit layout die Liste
+
+      <span class="param">param</span>&nbsp;   listparam         Ein Dictionary, welches die
+                                 Parameter fuer List-Viewer enhaelt.
+      
+</p>
+
+<h2>save</h2>
+<tt>   def save(self,key=None, domain=None,action=None):
+</tt>
+<h2>nextDomain</h2>
+<tt>   def nextDomain(self,domain=None,where=None,orderby=None,onRead=None):
+</tt>
+<p>
+      
+      Liefert fuer jeden gefunden Datensatz ein Tupple zurueck.
+
+      1 die Domain
+      2 ein Boolean das angibt, ob eine Daten oder Eingabemaske
+        erzeugt werden soll.
+
+      <span class="param">param</span>&nbsp;      domain         Domain Objekt
+      <span class="param">param</span>&nbsp;      where          SQL Where Klausel
+      <span class="param">param</span>&nbsp;      orderby        SQL Order By Klausel
+      <span class="param">param</span>&nbsp;      onRead         Handler wird nach jedem Aufruf
+                                 einer Domain aufgerufen. Der Routine
+                                 wird mit der Domain und dem Kennzeichen
+                                 isEditMask befuellt  und liefert
+                                 die Domain zurueck.
+      
+</p>
+
+<h2>gridrow</h2>
+<tt>   def gridrow(self,editmask=None,listrow=None,list=None,taglib=None,addhidden=[]):
+</tt>
+<p>
+       Erzeugen einer Grid Row
+
+          <span class="param">param</span>&nbsp;  editmask       Routine welche die Editiermaske beschreibt
+          <span class="param">param</span>&nbsp;  listrow        Routine welche eine Liste mit Datenzeileneintragen erzeugt
+          <span class="param">param</span>&nbsp;  list           Routine welche durch die Datenzeilen itteriert.
+                                 Diese liefert zwei Werte
+                                   1) Eine Domain mit den Dateninhalten
+                                   2) ein Flag welches angeibt ob die Domain als
+                                      Datenliste oder als Editiermaske angezeigt werden soll
+          <span class="param">param</span>&nbsp;  taglib         das aktuelle Taglib Objekt
+
+          <span class="param">return</span>&nbsp; Ein HTML Fragment, welches die gerenderte Datentabelle liefert.
+
+          
+</p>
+
+<h2>handleListEdit</h2>
+<tt>   def handleListEdit(self):
+</tt>
+<p>
+       Shot and forget Funktion fuer Behandlung
+          eines List-Edit Layouts
+          
+</p>
+
+<h2>isEditMask</h2>
+<tt>   def isEditMask(self,idfieldname,domainvalue):
+</tt>
+<p>
+       Prueft ob ein Eingabemaske angezeigt werden soll
+          <span class="param">param</span>&nbsp;  idfieldname       Name des ID Fields
+          
+</p>
+
+<h2>handleGrid</h2>
+<tt>   def handleGrid(self):
+</tt>
+<p>
+      
+      Shot and forget Funktionen fuer Behandlung
+      eines Grid Layouts.
+      Wird bei der Speicherungsoperaton ein Fehler festgestellt,
+      so wird an den Viewer in der Parameterliste der wert isOK auf Flase uebergeben.
+      
+</p>
+
+<h2>viewHelper</h2>
+<tt>         def viewHelper():
+</tt>
+<h2>run</h2>
+<tt>   def run(self,layout=None):
+</tt>
+<p>
+       Allgemeiner Aufruf des Viewhandlers.
+          In der Opton layout wird festgelegt ob
+          Grid oder List/Edit angewendet werden soll.
+          
+</p>
+
+<div class="filename">File: <span style="font-size:x-small">/__init__.py</span></div>
+<h1 class="__init__">Modulbeschreibung</h1>
+<p>
+
+Dieses Package enthaelt die Klassen des Frameworks
+
+</p>
+
+<div class="filename">File: <span style="font-size:x-small">/dbaccess/core.py</span></div>
+<h1 class="modul">Hintergrund</h1>
+<p>
+
+Basismodul fuer alle Datenbakrelevaten Klassen.
+
+HINT:
+   Die Klassen SqlConverter und EachDomain sind nicht dafuer gedacht
+   direkt verwendet zu werden.
+
+
+</p>
+
+<h1>Klasse Database</h1>
+<p>
+   
+   Allgemeines Datenbank Objekt.
+
+   Vorbereitet fuer
+     + oracle
+     + sqLite
+     + mySql
+
+   
+</p>
+
+<h2>Konstruktor</h2>
+<tt>   def __init__(self,dbtype,*args) :
+</tt>
+<p>
+      Initialisierung der Datenbank.
+
+         <span class="param">param</span>&nbsp; dbtype    Fuer jede vorhanden Datenbank wird ein Type angegeben.
+         <span class="param">param</span>&nbsp; args      Parameterliste:
+                          fuer unterschiedliche Datenbanken werden unterschiedliche
+                          Initialisierungstypen verwendet.
+         
+</p>
+
+<h2>cursorFactory</h2>
+<tt>   def cursorFactory(self):
+</tt>
+<p>
+      
+      Liefert eine Cursor auf die aktuelle Datenbank
+      
+</p>
+
+<h1>Klasse Domain</h1>
+<p>
+   
+   Dient zur Verbindung der Domain mit einer Datenbanktabelle
+
+   Eine Domain enthaelt
+    + Die Felder welche von der Datenbanktabelle
+      verwaltet werden sollen. Es ist nicht notwendig
+      alle Felder zu deklarieren.
+    + Eine Datenstruktur (metah) welche die Datenbanktabelle
+      beschreibt und eine Verbindug zu den Domainfeldern deklariert.
+    + Optional noch Methoden, welche zur Behandlung von Daten oder 
+      die Bereitstellung von ORM Methoden ermoeglichen.
+    + HANDLER
+        Handler liefern [True|False] Zurueck.
+        Bei False wird die Datenbankaktion abgebrochen
+
+        Fehlermeldungen koennen mit self.addError("Meldung")
+        angegben werden.
+
+   
+</p>
+
+<h2>Konstruktor</h2>
+<tt>   def __init__(self,db=None) :
+</tt>
+<h2>onCgiField</h2>
+<tt>   def onCgiField(self,fieldname,value):
+</tt>
+<p>
+      
+      Wenn die Domain ueber das CGI befuellt wir
+      wird bei jedem Feld dieser Handler aufgerufen.
+
+
+      <span class="param">param</span>&nbsp; fieldname         Feldname
+      <span class="param">param</span>&nbsp; value             Inhalt aus dem CGI
+
+      <span class="param">param</span>&nbsp; [True|False]      wird False uebergeben so bricht das Laden ab
+      
+</p>
+
+<h2>afterCgi</h2>
+<tt>   def afterCgi(self):
+</tt>
+<p>
+      
+      Wird nach dem Einlesen aller Felder aus dem CGI
+      aufgerufen.
+
+      <span class="param">return</span>&nbsp;  [True|False]
+      
+</p>
+
+<h2>onDelete</h2>
+<tt>   def onDelete(self):
+</tt>
+<p>
+      
+      Wird aufgerufen vor Loeschen eines Datensatzens
+
+      <span class="param">return</span>&nbsp; [True|False]
+      
+</p>
+
+<h2>onInsert</h2>
+<tt>   def onInsert(self):
+</tt>
+<p>
+      
+      Wird aufgerufen vor Einfuegen eines Datensatzens
+      False beendet die Aktion
+
+      <span class="param">return</span>&nbsp; [True|False]
+
+      
+</p>
+
+<h2>onUpdate</h2>
+<tt>   def onUpdate(self):
+</tt>
+<p>
+      
+      Wird aufgerufen vor Veraendern eines Datensatzens
+      False beendet die Aktion
+
+      <span class="param">return</span>&nbsp; [True|False]
+
+      
+</p>
+
+<h2>onWrite</h2>
+<tt>   def onWrite(self,mode=None):
+</tt>
+<p>
+      
+      Wird vor jeder schreibenden
+      Operation aufgerfuen.
+
+      <span class="param">param</span>&nbsp;  mode     Enthaelt insert/update/delete
+
+      <span class="param">return</span>&nbsp; [True|False]
+
+      
+</p>
+
+<h2>addError</h2>
+<tt>   def addError(self,msg=''):
+</tt>
+<p>
+      
+      Erweitert die Fehlermeldungsliste um
+      die uebergebene Meldung
+
+      <span class="param">param</span>&nbsp;  msg         Fehlermeldung
+
+      
+</p>
+
+<h2>getRownum</h2>
+<tt>   def getRownum(self):
+</tt>
+<p>
+      
+      Liefert die pseudospalte rownum bei eachDomain.
+      Diese Methode kann dafuer verwendet werden um zu pruefen,
+      ob die eachDomain Methode daten geliefert hat.
+      
+</p>
+
+<h2>raiseTypeError</h2>
+<tt>   def raiseTypeError(self,fldtype,name,value):
+</tt>
+<p>
+      
+      gibt Fehlermeldung bei Typenfehler aus.
+
+      HINT:
+         Diese Methode wirft eine TypeError mit
+         einer Fehlermeldung
+
+      <span class="param">param</span>&nbsp;   fldtype        Typ des Feldes
+      <span class="param">param</span>&nbsp;   name           Domain-Feldname
+      <span class="param">param</span>&nbsp;   value          Uebergebener Wert
+
+      
+</p>
+
+<h2>getDomainFieldNames</h2>
+<tt>   def getDomainFieldNames(self):
+</tt>
+<p>
+      
+      Liefert eine Liste mit den Domainfeldern
+      
+</p>
+
+<h2>__setattr__</h2>
+<tt>   def __setattr__(self,name,value):
+</tt>
+<p>
+      
+      Pruefen auf Typengueltigkeit.
+
+      HINT:
+         geht die Pruefung fehl, so wird ein 
+         Fehler geworfen.
+
+      <span class="param">param</span>&nbsp;   name        Domainfeldname
+      <span class="param">param</span>&nbsp;   value       Wert
+
+      
+</p>
+
+<h2>getFieldnames</h2>
+<tt>   def getFieldnames(self,cursor) :
+</tt>
+<p>
+      
+      Liefert eine Liste mit Datenbank-Feldname fuer den Cursor.
+      
+      <span class="param">param</span>&nbsp;   cursor      Cursor auf eine Datenbanktabelle
+
+      
+</p>
+
+<h2>set</h2>
+<tt>   def set(self,name=None,value=None):
+</tt>
+<p>
+       
+      Setzt den Inhalt eines Feldes der Domain
+
+      <span class="param">param</span>&nbsp;   name        Domainfeldnamen
+      <span class="param">param</span>&nbsp;   value       zu setzender Wert
+
+      
+</p>
+
+<h2>eachDomain</h2>
+<tt>   def eachDomain(self,where=None,orderby=None,limit=None) :
+</tt>
+<p>
+      
+      Iterator fuer jedes Vorkommen in der Datenbanktabelle.
+
+      <span class="param">param</span>&nbsp; where      Where Klauses fuer die SQL Anwesung
+      <span class="param">param</span>&nbsp; orderby    Sortierklausel
+      <span class="param">param</span>&nbsp; limit      Limitiert Datensaetze
+                        Kann ein Integer oder ein Tupple sein
+                        Wenn Integer wird maximal die Anzahl der genannten
+                        Datensaetze ausgegeben
+                        Bei einem Tupple wird vom angegebenen bis maximal
+                        bis zur angegenen Anzahl der Datensaetze ausgegeben.
+
+      usage
+         for dom in domain.eachDomain() :
+           print dom
+      
+</p>
+
+<h2>clear</h2>
+<tt>   def clear(self):
+</tt>
+<p>
+      
+      setzt alle Attribute welche als Datenbankfelder deklariert
+      wurden auf None.
+
+      Diese Method kann dazu verwenden werden das Domain-Objekt
+      wiederzuverwenden.
+      
+</p>
+
+<h2>getPK</h2>
+<tt>   def getPK(self):
+</tt>
+<p>
+       
+      Gibt den Domain-Felnamen des Primary Keys zurueck 
+      
+</p>
+
+<h2>getDbPK</h2>
+<tt>   def getDbPK(self):
+</tt>
+<p>
+       
+      Gibt den Namen des Primary Key der Datenbanktabelle zurueck. 
+      
+</p>
+
+<h2>getDbFieldName</h2>
+<tt>   def getDbFieldName(self,fld):
+</tt>
+<p>
+      
+      Liefert den Namen des Datenbankfeldes auf basis des Domainfeldnamen
+
+      <span class="param">param</span>&nbsp;   fld         Domainfeldname
+
+      <span class="param">return</span>&nbsp;  Datenbankfeldname
+      
+</p>
+
+<h2>get</h2>
+<tt>   def get(self,id=None,where=None):
+</tt>
+<p>
+      
+      Setzt die Domain auf den angegebnen Datensatz.
+
+      HINT:
+         wenn nicht gefunden wird isOk auf False gesetzt
+
+
+      <span class="param">param</span>&nbsp;   id          Primary Key
+      <span class="param">param</span>&nbsp;   where       Where Klausel
+
+      
+</p>
+
+<h2>writedb</h2>
+<tt>   def writedb(self,cgiparam=None,flash=None,action=None,id=None):
+</tt>
+<p>
+      
+      Behandelt alle schreibenden Datenbankoperationen.
+      Die Methode verwendet eine "Upsert" Strategie.
+      Wird der Datensatz basierdend auf seinem Primary-Keys
+      gefunden wird eine update sonst ein insert Anweisung generiert.
+
+      Tritt ein Fehler auf, wird False zurueckgeliefert
+
+      <span class="param">param</span>&nbsp;   cgiparam    Funktion zur Bearbeitung des CGI
+      <span class="param">param</span>&nbsp;   flash       Funktion um Nachrichten an das GUI zu uebermitteln
+      <span class="param">param</span>&nbsp;   action      'delete': Der Datensatz wird geloescht
+      <span class="param">param</span>&nbsp;   id          Primary Key
+      
+</p>
+
+<h2>usedFields</h2>
+<tt>   def usedFields(self,cgiparam=None):
+</tt>
+<p>
+      
+      Liefert eine Liste von Feldnamen,
+      welche durch das CGI uebergeben wurden
+      und in der Domain Feldliste vorhanden ist.
+
+      <span class="param">param</span>&nbsp; cgiparam     Methode zum lesen aus dem CGI
+
+      <span class="param">return</span>&nbsp; Feldlist
+      
+</p>
+
+<h2>fromCgi</h2>
+<tt>   def fromCgi(self,cgiparam=None,flds=None,typecheckStrict=True):
+</tt>
+<p>
+      
+      Befuellen der Domain aus dem CGI
+      HINT:
+         Typecheck wird ausgeschalten!
+         wirft eine Exception, wenn ein Fehler beim befuellen auftritt
+
+      <span class="param">param</span>&nbsp; cgiparam     Methode zum lesen aus dem CGI
+      <span class="param">param</span>&nbsp; flds         eine Liste von Felder, welche verewendet werden soll
+                              ist die Liste None, so wird die Feldliste aus den Metadaten uebernommen
+
+      <span class="param">return</span>&nbsp;  [True|Flase] das OK Kennzeichen
+      
+</p>
+
+<h2>delete</h2>
+<tt>   def delete(self):
+</tt>
+<p>
+      
+      loescht aktuellen Datensatz
+
+      HINT:
+         vor dem Loeschen wird onDelete aufgerufen
+         liefert die Methode False, so wird der Loeschvorgang
+         abgebrochen
+
+      <span class="param">return</span>&nbsp;  [True|Flase] das OK Kennzeichen
+
+      
+</p>
+
+<h2>deleteAll</h2>
+<tt>   def deleteAll(self,where=None):
+</tt>
+<p>
+      
+      Loeschen basierend auf einet Where Klausel
+
+      HINT:
+          Dieser Vorgang fueht keine Pruefung mit der Methode onDelete durch.
+
+      <span class="param">param</span>&nbsp;   where    Eine where Klausel
+                        Diese MUSS angegeben werden.
+
+      
+</p>
+
+<h2>update</h2>
+<tt>   def update(self,usedFields=None):
+</tt>
+<p>
+      
+      Veraendern des Datensatzes basieren auf den Inhalten der Domain
+         HINT:
+            vor dem Update wird die Methode onUpdate aufgerufen.
+            Liefert diese False zurueck wird der Ueberschreibenvorgang
+            abgebrochen.
+
+            Der Methode kann eine Feldliste uebergeben werden.
+            Ist diese deklariert, so werden nur die deklarierten Felder 
+            zum Update verwendet.
+
+      <span class="param">return</span>&nbsp;  [True|Flase] das OK Kennzeichen
+
+      
+</p>
+
+<h2>insert</h2>
+<tt>   def insert(self):
+</tt>
+<p>
+      
+      Einfuegen eines Datensatzes
+      Die aktuellen Werte aus der Domain werden in
+      die Datenbank geschrieben.
+
+      HINT:
+         vor dem Insert wird die Methode onInsert aufgerufen.
+         Liefert diese False zurueck wird der Einfuegevorgang
+         abgebrochen.
+
+      <span class="param">return</span>&nbsp;  [True|Flase] das OK Kennzeichen
+      
+</p>
+
+<h2>count</h2>
+<tt>   def count(self,where=None):
+</tt>
+<p>
+      
+      Liefert die Anzahl der Datensaetze ggf. basierend auf where
+
+      <span class="param">param</span>&nbsp;   where    Where Klausel
+
+      <span class="param">return</span>&nbsp;  Wert oder None
+      
+</p>
+
+<h2>sum</h2>
+<tt>   def sum(self,fld,where=None):
+</tt>
+<p>
+      
+      Liefert die Summenfunktion ggf. basierend auf where
+
+      <span class="param">param</span>&nbsp;   where    Where Klausel
+
+      <span class="param">return</span>&nbsp;  Wert oder None
+      
+</p>
+
+<h2>min</h2>
+<tt>   def min(self,fld,where=None):
+</tt>
+<p>
+      
+      Liefert die Summenfunktion ggf. basierend auf where
+
+      <span class="param">param</span>&nbsp;   where    Where Klausel
+
+      <span class="param">return</span>&nbsp;  Wert oder None
+
+      
+</p>
+
+<h2>max</h2>
+<tt>   def max(self,fld,where=None):
+</tt>
+<p>
+      
+      Liefert die Summenfunktion ggf. basierend auf where
+
+      <span class="param">param</span>&nbsp;   where    Where Klausel
+
+      <span class="param">return</span>&nbsp;  Wert oder None
+      
+</p>
+
+<h2>avg</h2>
+<tt>   def avg(self,fld,where=None):
+</tt>
+<p>
+      
+      Liefert die Summenfunktion ggf. basierend auf where
+
+      <span class="param">param</span>&nbsp;   where    Where Klausel
+
+      <span class="param">return</span>&nbsp;  Wert oder None
+      
+</p>
+
+<h2>getDomain</h2>
+<tt>   def getDomain(self,where=None) :
+</tt>
+<p>
+      
+      Gibt genau eine Domain oder None zurueck, wenn nicht gefunden.
+
+      <span class="param">param</span>&nbsp;   where       Whereklausel
+      
+</p>
+
+<h2>getValue</h2>
+<tt>   def getValue(self,fld):
+</tt>
+<p>
+      
+      Liefert den Inhalt eines Feldes auf Grund eines Domain-Feldnamen
+
+      <span class="param">param</span>&nbsp; fld           Feldnamen
+
+      
+</p>
+
+<h2>__del__</h2>
+<tt>   def __del__(self):
+</tt>
+<h1>Klasse EachDomain</h1>
+<p>
+   
+   Durchlaufen eines Datenbankstroms.
+   Optional koennen bei der Instanzierung eine Kriterien und eine
+   Sortierung kodieren.
+
+   Die Daten werden nach dem Lesen in die Domaifelder
+   kopiert.
+
+   HINT:
+      Diese Klasse wird von der Domain-Klasse verwenden und
+      soll nie direkt verwendet werden.
+
+   Usage:
+         for lovDom in lov.eachDomain(where='lovID=23','lovClass')
+            print lovDom
+
+   
+</p>
+
+<h2>Konstruktor</h2>
+<tt>   def __init__(self,domain,where=None,orderby=None,limit=None) :
+</tt>
+<p>
+      
+      Iteration ueber Domain initialisieren
+
+      <span class="param">param</span>&nbsp; domain     Domainobjekt
+      <span class="param">param</span>&nbsp; where      where Klausel fuer SQL Anweisung
+      <span class="param">param</span>&nbsp; orderby    Sortierklausel
+      <span class="param">param</span>&nbsp; limit      Limit Klausel
+                        Limit kann ein Integer oder
+                        ein Tuple mit zwei Elementen uebergeben werden.
+                        Limit mit INteger liefert bis zu der angegebenen Meng
+                        von Datensaetzen.
+                        Limit mit Tuppel ueberliest die anzahl von Datensaetzen in
+                        Element 1 und gibt maximal die Anzahl der Daensaetze im 2. Element zurueck.
+      
+</p>
+
+<h2>__iter__</h2>
+<tt>   def __iter__(self) :
+</tt>
+<p>
+      
+      Gibt Iterator zurueck.
+      
+</p>
+
+<h2>next</h2>
+<tt>   def next(self) :
+</tt>
+<p>
+      
+      durchlaufen des Datenstromes bis keine
+      weiteren Datensaetze mehr gefunden werden. 
+      
+</p>
+
+<h1>Klasse SqlConverter</h1>
+<p>
+   
+   Behandlung von Domainfeldnamen
+   bei where und orderby Optionen.
+
+   Reagiert auf die Konfigurationsvariable
+   SqlConverter_fieldBegin und SqlConverter_fieldEnd
+   sind beide auf None gesetzt, wird keine Umwandlung durchgefuehrt.
+
+   Sucht das Vorkommen von [fieldBegin]domainfeldname[fieldEnd] und ersetzt
+   dieses durch den Tabellenfeldnamen
+
+   Beispiel:
+      fieldBegin = '$'
+      fieldEnd   = ''
+
+      aus Domain fields Definition:
+         'personID':{dbfield:'PERSON_ID', ...}
+
+      Ergebnis:
+         "$personID = 23" wird zu "PERSON_ID = 23"
+
+   
+</p>
+
+<h2>convert</h2>
+<tt>   def convert(domain,klausel):
+</tt>
+<p>
+      
+      Konvertierroutine,
+      kann als Klassenmethode aufgerufen werden.
+
+      <span class="param">param</span>&nbsp;   domain         Domainobjekt
+      <span class="param">param</span>&nbsp;   klausel        Zu konvertierende Klausel
+
+      <span class="param">return</span>&nbsp;  veraenderte Whereklausel
+
+      
+</p>
+
+<div class="filename">File: <span style="font-size:x-small">/dbaccess/dbmysql.py</span></div>
+<h1>Klasse DbMySql</h1>
+<p>
+   SQL Datenbankverbindung spezialisiert fuer mySQL
+      
+</p>
+
+<h2>Konstruktor</h2>
+<tt>   def __init__(self,host,port,user,passwd,db):
+</tt>
+<h2>__del__</h2>
+<tt>   def __del__(self):
+</tt>
+<div class="filename">File: <span style="font-size:x-small">/dbaccess/dboracle.py</span></div>
+<h1>Klasse DbOracle</h1>
+<p>
+   
+   Anbindung an eine Oracle Datenbankname
+
+   Die Anbindung wird ueber einen TNS-Names String bewerkststelligt.
+
+   HINT:
+      Autocommit wird eingeschalten!
+
+   Static Methods:  
+      giveInsert
+      giveUpate
+
+   
+</p>
+
+<h2>Konstruktor</h2>
+<tt>   def __init__(self,username,password,sid,host,port) :
+</tt>
+<h2>giveInsert</h2>
+<tt>   def giveInsert(tablename=None,fields=None):
+</tt>
+<p>
+      
+      Liefert eine Oracle spezelles form eines prepared statments
+
+      <span class="param">param</span>&nbsp;   tablename         Tabellenanmen
+      <span class="param">param</span>&nbsp;   fields            Eine Liste von Feldnamen
+      
+      <span class="param">return</span>&nbsp;  insertstatement   Oracle spezialisiert
+
+      
+</p>
+
+<h2>giveUpdate</h2>
+<tt>   def giveUpdate(tablename=None,fields=None,primarykey=None):
+</tt>
+<p>
+      
+      Liefert eine Oracle spezi  elles form eines prepared statments
+
+      <span class="param">param</span>&nbsp;   tablename         Tabellenanmen
+      <span class="param">param</span>&nbsp;   fields            Eine Liste von Feldnamen
+      <span class="param">param</span>&nbsp;   primarykey        Name des Primarykeys in der Datenbank
+      
+      <span class="param">return</span>&nbsp;  insertstatement   Oracle spezialisiert
+
+      
+</p>
+
+<h2>__del__</h2>
+<tt>   def __del__(self):
+</tt>
+<div class="filename">File: <span style="font-size:x-small">/dbaccess/dbsqlite3.py</span></div>
+<h1>Klasse DbSqlite3</h1>
+<p>
+   SQL Datenbankverbindung spezialisiert fuer SQLite
+
+      HINT:
+         Die Datenbank wird automatisch auf Autocommit gesetzt
+
+      
+</p>
+
+<h2>Konstruktor</h2>
+<tt>   def __init__(self,filename) :
+</tt>
+<p>
+      
+      Konsturktor: fuer sqlite ist nur der Datenbankpfad notwendig.
+      <span class="param">param</span>&nbsp;   filename       Dateiname und Pfad auf die Datenbankdatei.
+      
+</p>
+
+<h2>__del__</h2>
+<tt>   def __del__(self):
+</tt>
+<div class="filename">File: <span style="font-size:x-small">/dbaccess/__init__.py</span></div>
+<h1 class="__init__">Modulbeschreibung</h1>
+<p>
+
+Modul zur Abfragen und Bearbeitung von Datenbanktabelle.
+
+Autor:      W. Nagy
+Startdatum: 16.12.2010
+Lizenz:     http://creativecommons.org/licenses/by/2.0/at/
+
+Die Daten eines Datensatzes werden in einer Domain gespeichert.
+
+Die Domain kann dazu verwendet werden, Datensatzspezifische
+Funktionen als Methode zu halten. z.B. ORM
+Naehere Beschreibung am ende der Datei.
+
+Dieses Modul ist fuer sqlite Datenbanken optimiert.
+
+Es bietet die Grundlegenden Funktionen
+- Oeffnen der Datenbank
+- lesen eines Datensatzes ueber seinen Primary Key
+  oder ein beliebige where Klausel
+- Itteration von Datensaetzen (eachDomain)
+  Mit der Moeglichkeit einen Filter einzusetzen und das Sortierkriterium anzugeben
+- Einfuegen eines Datensatzes (insert)
+- Aenderung eines Datensatzes (update)
+- SQL Aggregatfunktionen (min, max, avg, sum, count)
+
+Besonderheiten:
+   eachDomain
+      Angabe von limit
+      Die Option limit bei eachDomain limitiert die gelieferten Datensaetze
+      Sie kann in zwei unteschiedlichen Methoden angegben werden.
+      1 limit=[ganzzahl] 
+        z.B.: .eachDomain(limit=3) liefert maximal 3 Datensaetze
+      2 limit=([offset,anzahl])   
+        z.B.: .eachDomain(limit(9,16) ueberliest die 1. 9 Daensaetze und liefert
+              maximal 16 zurueck
+
+
+</p>
+
+<div class="filename">File: <span style="font-size:x-small">/_test/test_checktype.py</span></div>
+<h2>hasException</h2>
+<tt>def hasException (code):
+</tt>
+<h1 class="modul">Hintergrund</h1>
+<p>   Prueft ob bei uebergebenen Code eine Exception auftritt
+</p>
+
+<h1>Klasse Person</h1>
+<h2>errmsg</h2>
+<tt>   def errmsg(self,type,name,value):
+</tt>
+<h2>setValue</h2>
+<tt>   def setValue(self,name,value):
+</tt>
+<h2>__setattr__</h2>
+<tt>   def __setattr__(self,name,value):
+</tt>
+<div class="filename">File: <span style="font-size:x-small">/_test/test_dateconverter.py</span></div>
+<h2>hasException</h2>
+<tt>def hasException (code):
+</tt>
+<h1 class="modul">Hintergrund</h1>
+<p>   Prueft ob bei uebergebenen Code eine Exception auftritt
+</p>
+
+<div class="filename">File: <span style="font-size:x-small">/_test/test_dbaccess.py</span></div>
+<h1>Klasse LovDomain</h1>
+<h2>getLovValueUpper</h2>
+<tt>   def getLovValueUpper(self):
+</tt>
+<h2>hasException</h2>
+<tt>def hasException (code):
+</tt>
+<p>   Prueft ob bei uebergebenen Code eine Exception auftritt
+</p>
+
+<div class="filename">File: <span style="font-size:x-small">/_test/test_oracle_access.py</span></div>
+<h2>hasException</h2>
+<tt>def hasException (code):
+</tt>
+<h1 class="modul">Hintergrund</h1>
+<p>   Prueft ob bei uebergebenen Code eine Exception auftritt
+</p>
+
+</body></html>
